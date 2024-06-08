@@ -56,7 +56,7 @@ public final class AES {
             System.arraycopy(iv, 0, cipherTextWithIV, 0, iv.length);
             System.arraycopy(cipherText, 0, cipherTextWithIV, iv.length, cipherText.length);
 
-            return new String(cipherTextWithIV, "UTF-8");
+            return HexUtils.toHexString(cipherTextWithIV);
 
         } catch (Exception e) {
             e.printStackTrace();

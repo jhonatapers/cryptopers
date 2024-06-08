@@ -15,6 +15,7 @@ import com.jhonatapers.comandos.Assinar;
 import com.jhonatapers.comandos.CifrarAES;
 import com.jhonatapers.comandos.CifrarComChave;
 import com.jhonatapers.comandos.Comando;
+import com.jhonatapers.comandos.ConverterTextoParaHex;
 import com.jhonatapers.comandos.DecifrarAES;
 import com.jhonatapers.comandos.GerarChaveSimetrica;
 import com.jhonatapers.comandos.GerarParChavesAssimetricas;
@@ -54,7 +55,8 @@ public final class App implements Runnable {
                 new VerificarAssinatura(this),
                 new CifrarComChave(this),
                 new DecifrarAES(this),
-                new CifrarAES(this));
+                new CifrarAES(this),
+                new ConverterTextoParaHex(this));
     }
 
     @Override
@@ -155,10 +157,19 @@ public final class App implements Runnable {
         if (fakeLoading)
             fakeLoading(100, 5);
 
-        System.out.println("\n\nMensagem=[%s]".formatted(AES.decifrar(
+        System.out.println("\n\nMensagem=[%s]".formatted(AES.cifrar(
                 HexUtils.hexToByteArray(mensagem),
                 chaveSimetrica.getBytes(),
                 tamanhoIV)));
+    }
+
+    public void converterStringParaHex() {
+        System.out.println("Digite o valor do texto:");
+        String texto = inputString();
+
+        
+        System.out.println("Valor em hexadecimal:\n" + HexUtils.toHexString(texto));
+
     }
 
     public void decifrarAES() {

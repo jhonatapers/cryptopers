@@ -16,6 +16,14 @@ public final class HexUtils {
         return hexString.toString();
     }
 
+    public static String toHexString(String input) {
+        StringBuilder hexString = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            hexString.append(String.format("%02x", (int) c));
+        }
+        return hexString.toString();
+    }
+
     public static BigInteger hexToBigInteger(String stringHex) {
         return new BigInteger(stringHex, 16);
     }
