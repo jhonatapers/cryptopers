@@ -243,7 +243,7 @@ public final class App implements Runnable {
 
         System.out.println("Digite o valor em hexa da assiantura:");
         final String assinatura = inputString();
-
+        
         boolean passou = CriptoAssimetrico.verificarAssinatura(
                 HexUtils.hexToBigInteger(mensagem),
                 HexUtils.hexToBigInteger(assinatura),

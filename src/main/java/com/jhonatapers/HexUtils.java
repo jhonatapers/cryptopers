@@ -32,10 +32,9 @@ public final class HexUtils {
         assert hex.length() % 2 == 0 : "invalid text length";
 
         byte[] result = new byte[hex.length() / 2];
-        for (int i = 0; i < hex.length(); i += 2) {
+        for (int i = 0; i < hex.length(); i += 2)
             result[i / 2] = (byte) Integer.parseInt(hex.substring(i, i + 2), 16);
-        }
+
         return result;
     }
-
 }

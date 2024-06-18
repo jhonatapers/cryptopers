@@ -67,13 +67,12 @@ public final class CriptoAssimetrico {
     }
 
     public static BigInteger assinar(BigInteger mensagem, ChavePrivada chavePrivada) {
-        return mensagem.modPow(chavePrivada.d, chavePrivada.N);
+        return new BigInteger(1, HashUtils.sha256(HexUtils.hexToByteArray(mensagem.toString(16)))).modPow(chavePrivada.d, chavePrivada.N);
     }
 
     public static boolean verificarAssinatura(BigInteger mensagem, BigInteger assinatura, ChavePublica chavePublica) {
 
-        BigInteger hc = new BigInteger(1, HashUtils.sha256(HexUtils.hexToByteArray(mensagem.toString(16))));
-
+        BigInteger hc = new BigInteger(1, HashUtils.sha256(HexUtils.hexToByteArray(mensagem.toString(16))));        
         return assinatura.modPow(chavePublica.e, chavePublica.N).compareTo(hc) == 0;
     }
 
